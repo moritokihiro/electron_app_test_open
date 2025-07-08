@@ -7,7 +7,11 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    // ✅ React JSX 対応の追加
+    "jsx": "react-jsx",
+    "allowJs": true
   },
   "include": ["src"]
 }
