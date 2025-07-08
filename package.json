@@ -1,0 +1,46 @@
+{
+  "name": "electron_app_test_open",
+  "version": "1.0.0",
+  "description": "Electron SQLite Test",
+  "main": "dist/main.js",
+  "scripts": {
+    "copy-html": "chokidar 'src/renderer/index.html' -c 'npm run copy-html'",
+    "start": "npm run copy-html && electron .",
+    "start-dev": "npm run build && concurrently \"tsc -w\" \"wait-on dist/main.js && electron .\"",
+    "start-prod": "npm run build && npm run start",
+    "build": "tsc && npm run copy-html",
+    "dist": "npm run build && electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moritokihiro/electron_app_test_open.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moritokihiro/electron_app_test_open/issues"
+  },
+  "homepage": "https://github.com/moritokihiro/electron_app_test_open#readme",
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.3",
+    "@types/node": "^24.0.7",
+    "concurrently": "^9.2.0",
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.8.3",
+    "wait-on": "^7.0.1"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0"
+  },
+  "build": {
+    "extraFiles": [
+      {
+        "from": "data/",
+        "to": "data/"
+      }
+    ]
+  }
+}
