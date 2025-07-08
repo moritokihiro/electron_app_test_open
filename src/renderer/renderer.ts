@@ -1,7 +1,17 @@
-window.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('load-users');
-  btn?.addEventListener('click', async () => {
-    const users = await (window as any).api.getUsers();
-    console.log(users);
-  });
+export {}; // Make this file a module
+
+declare global {
+  interface Window {
+    api: {
+      getSims: () => Promise<any>;
+    };
+  }
+}
+
+const loadBtn = document.getElementById('loadSims')!;
+const result = document.getElementById('result')!;
+
+loadBtn.addEventListener('click', async () => {
+  const sims = await window.api.getSims();
+  result.textContent = JSON.stringify(sims, null, 2);
 });

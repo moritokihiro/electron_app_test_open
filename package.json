@@ -4,9 +4,10 @@
   "description": "Electron SQLite Test",
   "main": "dist/main.js",
   "scripts": {
-    "copy-html": "chokidar 'src/renderer/index.html' -c 'npm run copy-html'",
+    "copy-html": "mkdir -p dist/renderer && cp src/renderer/index.html dist/renderer/",
+    "watch-html": "chokidar 'src/renderer/index.html' -c 'npm run copy-html'",
     "start": "npm run copy-html && electron .",
-    "start-dev": "npm run build && concurrently \"tsc -w\" \"wait-on dist/main.js && electron .\"",
+    "start-dev": "npm run build && concurrently \"tsc -w\" \"wait-on dist/main.js\" \"electron .\"",
     "start-prod": "npm run build && npm run start",
     "build": "tsc && npm run copy-html",
     "dist": "npm run build && electron-builder"
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.3",
     "@types/node": "^24.0.7",
+    "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.0",
     "electron": "^37.2.0",
     "electron-builder": "^26.0.12",
